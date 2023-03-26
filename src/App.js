@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Forms from './Forms';
 
@@ -9,20 +9,24 @@ function App() {
   const [longitude, setLongitude] = useState();
 
   const setIncidentHandler = (event) => {
-    setIncident({event})
+    setIncident(event)
   }
 
   const setLatitudeHandler = (event) => {
-    setLatitude({event})
+    setLatitude(event)
   }
 
   const setLongitudeHandler = (event) => {
-    setLongitude({event})
+    setLongitude(event)
   }
+
+  useEffect(()=> {
+    console.log("Inside Effect", incident, latitude, longitude);
+  }, [incident, latitude, longitude])
 
   return (
     <div className="App">
-      <nav style={{background: 'beige', height: "50px"}}>
+      <nav style={{background: 'beige', height: "50px", display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
         <b>Integrated Incident Management System (IIMS)</b>
       </nav>
       <div>
