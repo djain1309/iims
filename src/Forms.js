@@ -48,22 +48,30 @@ function Forms(props) {
 
     const [start, setStart] = useState({startHour: '', startMin: ''});
     const setStartHourHandler = (event) => {
-        console.log(event.target.value);
-        setStart({...start, startHour: event.target.value});
+        const input = event.target.value;
+        if (/^\d{0,2}$/.test(input) && input <= 24) {
+            setStart({...start, startHour: input});
+        }
     }
     const setStartMinHandler = (event) => {
-        console.log(event.target.value);
-        setStart({...start, startMin: event.target.value});
+        const input = event.target.value;
+        if (/^\d{0,2}$/.test(input) && input <= 59) {
+            setStart({...start, startMin: input});
+        }
     }
 
     const [end, setEnd] = useState({endHour: '', endMin: ''});
     const setEndHourHandler = (event) => {
-        console.log(event.target.value);
-        setEnd({...end, endHour: event.target.value});
+        const input = event.target.value;
+        if (/^\d{0,2}$/.test(input) && input <= 24) {
+            setEnd({...end, endHour: input});
+        }
     }
     const setEndMinHandler = (event) => {
-        console.log(event.target.value);
-        setEnd({...end, endMin: event.target.value});
+        const input = event.target.value;
+        if (/^\d{0,2}$/.test(input) && input <= 59) {
+            setEnd({...end, endMin: input});
+        }
     }
 
     const [timeInterval, setTimeInterval] = useState('');
@@ -162,11 +170,13 @@ function Forms(props) {
                         <span>
                             <TextField id="outlined-basic" label="Start Hour" variant="outlined" autoComplete='off'
                             value={start.startHour}
-                            onChange={setStartHourHandler} />  
+                            onChange={setStartHourHandler}
+                            placeholder={"HH"} />  
                         </span>
                         <span>
                             <TextField id="outlined-basic" label="Start Min" variant="outlined" autoComplete='off'
                             value={start.startMin}
+                            placeholder={"MM"}
                             onChange={setStartMinHandler} />  
                         </span>
                     </div>
@@ -178,11 +188,13 @@ function Forms(props) {
                         <span>
                             <TextField id="outlined-basic" label="End Hour" variant="outlined" autoComplete='off'
                             value={end.endHour}
+                            placeholder={"HH"}
                             onChange={setEndHourHandler} />  
                         </span>
                         <span>
                             <TextField id="outlined-basic" label="End Min" variant="outlined" autoComplete='off'
                             value={end.endMin}
+                            placeholder={"MM"}
                             onChange={setEndMinHandler} />  
                         </span>
                     </div>
