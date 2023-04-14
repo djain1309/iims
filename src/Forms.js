@@ -8,13 +8,16 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 
-
-
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 function Forms(props) {
 
     
     const [nameOfEvent, setNameOfEvent] = useState('');
+    const [date, setDate] = useState(null);
     const selectNameOfEventHandler = (event) => {
         console.log(event.target.value);
         setNameOfEvent(event.target.value);
@@ -92,7 +95,7 @@ function Forms(props) {
             }}>
                 <FormControl fullWidth>
                     <FormControl fullWidth style={{marginTop: '25px'}}>
-                    <InputLabel id="name-of-event-label">Event</InputLabel>
+                    <InputLabel id="name-of-event-label">Data</InputLabel>
                     <Select
                         labelId="name-of-event-select-label"
                         id="name-of-event-select"
@@ -110,12 +113,12 @@ function Forms(props) {
                     </div>
 
                     <FormControl fullWidth>
-                    <InputLabel id="incident-label">Incident</InputLabel>
+                    <InputLabel id="incident-label">Incident (optional)</InputLabel>
                     <Select
                         labelId="incident-select-label"
                         id="incident-simple-select"
                         value={incident}
-                        label="INCIDENT"
+                        label="INCIDENT (optional)"
                         onChange={setIncidentHandler}
                         >
                         <MenuItem value={'ONE'}>INCIDENT #ONE</MenuItem>
@@ -136,7 +139,7 @@ function Forms(props) {
                             onChange={setLatitudeHandler} />  
                         </span>
                         <span>
-                            <TextField id="outlined-basic" label="Height" variant="outlined" autoComplete='off'
+                            <TextField id="outlined-basic" label="Height (miles)" variant="outlined" autoComplete='off'
                             value={latitude.top}
                             onChange={setTopHandler} />  
                         </span>
@@ -153,7 +156,7 @@ function Forms(props) {
                             onChange={setLongitudeHandler} />  
                         </span>
                         <span>
-                            <TextField id="outlined-basic" label="Width" variant="outlined" autoComplete='off'
+                            <TextField id="outlined-basic" label="Width (miles)" variant="outlined" autoComplete='off'
                             value={longitude.width}
                             onChange={setWidthHandler} />  
                         </span>
@@ -164,6 +167,16 @@ function Forms(props) {
                         <Divider />
                     </div>
 
+                    {/* <div> */}
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker']}>
+                        <DatePicker value={date} onChange={(newDate) => setDate(newDate)} />
+                        </DemoContainer>
+                    </LocalizationProvider>
+                    {/* </div> */}
+                    <div style={{margin:'10px'}}>
+                        <Divider />
+                    </div>
                     {/* START */}
                     <FormControl fullWidth>
                     <div style={{display: 'inline-flex'}}>
